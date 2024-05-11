@@ -15,7 +15,7 @@ interface Props {
   isEditing?: boolean;
 }
 
-export function CreateInvoiceForm({
+export function CreateEditInvoiceForm({
   invoice,
   customers,
   isEditing = false,

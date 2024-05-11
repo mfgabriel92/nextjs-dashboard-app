@@ -18,8 +18,8 @@ export {
 } from './dashboard';
 export {
   Breadcrumbs,
+  CreateEditInvoiceForm,
   CreateInvoice,
-  CreateInvoiceForm,
   DeleteInvoice,
   InvoiceStatus,
   Pagination,

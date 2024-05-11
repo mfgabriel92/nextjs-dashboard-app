@@ -1,5 +1,6 @@
 import { Button } from '@/app/components';
-import { CustomerField } from '@/app/lib/definitions';
+import { createInvoice, updateInvoice } from '@/app/lib';
+import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
 import {
   CheckIcon,
   ClockIcon,
@@ -8,13 +9,22 @@ import {
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-export function CreateInvoiceForm({
-  customers,
-}: {
+interface Props {
+  invoice?: InvoiceForm;
   customers: CustomerField[];
-}) {
+  isEditing?: boolean;
+}
+
+export function CreateInvoiceForm({
+  invoice,
+  customers,
+  isEditing = false,
+}: Props) {
+  // @ts-ignore
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice?.id);
+
   return (
-    <form>
+    <form action={isEditing ? updateInvoiceWithId : createInvoice}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         <div className="mb-4">
           <label htmlFor="customer" className="mb-2 block text-sm font-medium">
@@ -25,7 +35,7 @@ export function CreateInvoiceForm({
               id="customer"
               name="customerId"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue=""
+              defaultValue={isEditing ? invoice?.customer_id : ''}
             >
               <option value="" disabled>
                 Select a customer
@@ -51,6 +61,7 @@ export function CreateInvoiceForm({
                 name="amount"
                 type="number"
                 step="0.01"
+                defaultValue={isEditing ? invoice?.amount : ''}
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
@@ -71,6 +82,7 @@ export function CreateInvoiceForm({
                   name="status"
                   type="radio"
                   value="pending"
+                  defaultChecked={isEditing && invoice?.status === 'pending'}
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 />
                 <label
@@ -86,6 +98,7 @@ export function CreateInvoiceForm({
                   name="status"
                   type="radio"
                   value="paid"
+                  defaultChecked={isEditing && invoice?.status === 'paid'}
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
                 />
                 <label
@@ -102,11 +115,13 @@ export function CreateInvoiceForm({
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className="flex h-12 items-center bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancel
         </Link>
-        <Button type="submit">Create Invoice</Button>
+        <Button type="submit">
+          {isEditing ? 'Update Invoice' : 'Create Invoice'}
+        </Button>
       </div>
     </form>
   );

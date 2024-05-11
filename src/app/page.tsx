@@ -1,16 +1,16 @@
-import { AcmeLogo, Button } from "@/app/components";
-import Image from "next/image";
+import { AcmeLogo, Button } from '@/app/components';
+import Image from 'next/image';
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col">
-      <div className="flex h-20 shrink-0 items-end bg-blue-500 p-4 md:h-18">
+      <div className="md:h-18 flex h-20 shrink-0 items-end bg-blue-500 p-4">
         <AcmeLogo />
       </div>
       <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-purple-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className="text-gray-800 text-xl md:leading-normal">
-            <strong>Welcome to Acme.</strong> This is the example for the{" "}
+        <div className="flex flex-col justify-center gap-6 bg-purple-50 px-6 py-10 md:w-2/5 md:px-20">
+          <p className="text-xl text-gray-800 md:leading-normal">
+            <strong>Welcome to Acme.</strong> This is the example for the{' '}
             <a href="https://nextjs.org/learn/" className="text-blue-500">
               Next.js Learn Course
             </a>

@@ -1,4 +1,4 @@
-import { Breadcrumbs, CreateInvoiceForm } from '@/app/components';
+import { Breadcrumbs, CreateEditInvoiceForm } from '@/app/components';
 import { fetchCustomers, fetchInvoiceById } from '@/app/lib';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -35,7 +35,7 @@ export default async function EditPage({ params }: Props) {
           },
         ]}
       />
-      <CreateInvoiceForm
+      <CreateEditInvoiceForm
         invoice={invoice}
         customers={customers}
         isEditing={true}

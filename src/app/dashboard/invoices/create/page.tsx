@@ -1,4 +1,4 @@
-import { Breadcrumbs, CreateInvoiceForm } from '@/app/components';
+import { Breadcrumbs, CreateEditInvoiceForm } from '@/app/components';
 import { fetchCustomers } from '@/app/lib';
 import { Metadata } from 'next';
 
@@ -21,7 +21,7 @@ export default async function CreateInvoicePage() {
           },
         ]}
       />
-      <CreateInvoiceForm customers={customers} />
+      <CreateEditInvoiceForm customers={customers} />
     </main>
   );
 }
